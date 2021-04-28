@@ -9,17 +9,24 @@ To get started with TDD, see the `README.md` file in your
 class Array
 
   def accumulate(&block)
-    accumulator = []
-    self.each do |item|
-      if item.class == Integer || item.class == Float
-        accumulator << item**2
-      end
-      if item.class == String
-        accumulator << block.call(item)
-      end
+  #   accumulator = []
+  #   self.each do |item|
+  #     if item.class == Integer || item.class == Float
+  #       p item
+  #       accumulator << (item * item)
+  #     end
+  #     if item.class == String
+  #       accumulator << block.call(item)
+  #     end
+  #   end
+  #   return accumulator  
+  # end
+  
+  return enum_for(:each) unless block_given?
+    a = Array.new
+    self.each_with_index do |item, index|
+      a[index] = yield item
     end
-    return accumulator  
+    a
   end
-
-
 end
