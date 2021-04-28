@@ -38,4 +38,13 @@ class AcronymTest < Minitest::Test
     # skip
     assert_equal "SIMUFTA", Acronym.abbreviate("Something - I made up from thin air")
   end
+
+  def test_accumulate_when_block_is_deferred
+  skip
+  accumulate_enumerator = [1, 2, 3].accumulate
+  accumulated_result = accumulate_enumerator.map do |number|
+    number * number
+  end
+  assert_equal [1, 4, 9], accumulated_result
+end
 end
